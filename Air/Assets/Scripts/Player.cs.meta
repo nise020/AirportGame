@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b0e65903dffedcd40afd8b979f8a14fb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fabBullet: {instanceID: 0}
+  - dynamicObject: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
