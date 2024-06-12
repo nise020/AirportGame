@@ -434,8 +434,18 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver() //여기 수정
     {
-        List<cUserDate> listUserData =
-           JsonConvert.DeserializeObject<List<cUserDate>>(PlayerPrefs.GetString(Tool.rankKey));
+        string rankData = PlayerPrefs.GetString(Tool.rankKey, null);
+
+        if (string.IsNullOrEmpty(rankData))
+        {
+            // 빈 데이터에 대한 기본값 설정
+            rankData = "[]"; // 기본적으로 빈 리스트를 사용
+        }
+
+        List<cUserDate> listUserData = JsonConvert.DeserializeObject<List<cUserDate>>(rankData);
+
+        //List<cUserDate> listUserData =
+        //   JsonConvert.DeserializeObject<List<cUserDate>>(PlayerPrefs.GetString(Tool.rankKey));
 
         int rank = -1;//0 이 1등
         int count = listUserData.Count;
