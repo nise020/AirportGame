@@ -23,6 +23,7 @@ public class Explosion : MonoBehaviour
 
     public void setImageSize(float _imgSize)
     {
+        //이미지 사이즈에 비례해서 해당 사이즈 조절
         Vector3 scale = transform.localScale;
         scale *= _imgSize / 24f;
         transform.localScale = scale;

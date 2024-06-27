@@ -432,21 +432,20 @@ public class GameManager : MonoBehaviour
         IsSpawnBoss=false;
         
     }
+    /// <summary>
+    /// 점수를 기존 데이터랑 비교해서 랭크에 등록
+    /// </summary>
     public void GameOver() //여기 수정
     {
         string rankData = PlayerPrefs.GetString(Tool.rankKey, null);
-
         if (string.IsNullOrEmpty(rankData))
         {
             // 빈 데이터에 대한 기본값 설정
             rankData = "[]"; // 기본적으로 빈 리스트를 사용
         }
 
-        List<cUserDate> listUserData = JsonConvert.DeserializeObject<List<cUserDate>>(rankData);
-
-        //List<cUserDate> listUserData =
-        //   JsonConvert.DeserializeObject<List<cUserDate>>(PlayerPrefs.GetString(Tool.rankKey));
-
+        List<cUserDate> listUserData = 
+            JsonConvert.DeserializeObject<List<cUserDate>>(rankData);
         int rank = -1;//0 이 1등
         int count = listUserData.Count;
         for (int iNum = 0; iNum < count; iNum++) 
@@ -460,7 +459,7 @@ public class GameManager : MonoBehaviour
         }
         textGameOverMenuScore.text = $"점수 :{score.ToString("d8")}";
 
-        if (rank != 1) 
+        if (rank != -1) 
         {
             textGameOverMenuRank.text = $"랭킹 : {rank + 1}등";
             IFGameOverMenuRank.gameObject.SetActive(true);
@@ -476,7 +475,7 @@ public class GameManager : MonoBehaviour
         //textGameOverMenuRank.text = rank != -1 ? $"랭킹 : {rank + 1}등" : "랭크인 하지 못했습니다";
         //IFGameOverMenuRank.gameObject.SetActive(rank != -1);
         //textGameOverMenuBtn.text = rank != -1 ? "등록" : "메인메뉴로";
-
+        //btnGameOverMenu.onClick.RemoveAllListeners();
         btnGameOverMenu.onClick.AddListener(() =>
         {
             //랭크인을 했다면 랭크와 이름을 저장
